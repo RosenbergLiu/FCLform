@@ -18,9 +18,10 @@ export default function BatchForm() {
                       id="model"
                       name="model"
                       className="mt-2 block w-full rounded-md border-0 py-1.5 pl-3 pr-10 text-gray-900 ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                      defaultValue=""
                       required
                   >
-                    <option value="" disabled selected>Model</option>
+                    <option value="" disabled>Model</option>
                     <option>Model 1</option>
                     <option>Model 2</option>
                     <option>Model 3</option>
@@ -53,12 +54,20 @@ export default function BatchForm() {
                       id="level"
                       name="level"
                       className="mt-2 block w-full rounded-md border-0 py-1.5 pl-3 pr-10 text-gray-900 ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                      defaultValue=""
                       required
                   >
-                    <option value="" disabled selected>License Level</option>
+                    <option value="" disabled>License Level</option>
+                    <option>0</option>
                     <option>1</option>
                     <option>2</option>
                     <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
+                    <option>6</option>
+                    <option>7</option>
+                    <option>8</option>
+                    <option>9</option>
                   </select>
                 </div>
 
