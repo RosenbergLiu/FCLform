@@ -28,7 +28,7 @@ function NavItem({
         <Link
             href={href}
             className={clsx(
-                'relative block px-3 py-2 transition',
+                'relative block px-3 py-2 transition text-white',
                 isActive
                     ? 'text-teal-500 dark:text-teal-400'
                     : 'hover:text-teal-500 dark:hover:text-teal-400',
@@ -36,7 +36,7 @@ function NavItem({
         >
             {children}
             {isActive && (
-                <span className="absolute inset-x-1 -bottom-px h-px bg-gradient-to-r from-teal-500/0 via-teal-500/40 to-teal-500/0 dark:from-teal-400/0 dark:via-teal-400/40 dark:to-teal-400/0" />
+                <span className="absolute inset-x-1 -bottom-px bg-red-500 h-1" />
             )}
         </Link>
     )
@@ -46,7 +46,7 @@ export default function Header() {
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
     return (
-        <header className="bg-white">
+        <header className="bg-black">
             <nav className="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8" aria-label="Global">
                 <a href="#" className="-m-1.5 p-1.5">
                     <span className="sr-only">Your Company</span>

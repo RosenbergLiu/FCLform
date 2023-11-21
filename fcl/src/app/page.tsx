@@ -31,9 +31,9 @@ export default function BatchForm() {
   return (
       <>
         <div className="flex min-h-full flex-1 flex-col justify-center py-12 sm:px-6 lg:px-8">
-          <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-[480px]">
-            <div className="bg-white px-6 py-12 shadow sm:rounded-lg sm:px-12">
-              <form className="space-y-6" action="#" method="POST" onSubmit={submitData}>
+          <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-[480px] ">
+            <div className="bg-white px-6 py-12 shadow sm:rounded-lg sm:px-12 dark:bg-black border-4 border-white dark:border-4 dark:border-red-500">
+              <form className="space-y-6 " onSubmit={submitData}>
                 <div className="mt-2">
                   <p className="text-2xl">Batch Form</p>
                 </div>
@@ -118,7 +118,9 @@ export default function BatchForm() {
                 <div>
                   <button
                       type="submit"
-                      className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                      style={{ backgroundColor: '#6A5739' }}
+                      className="flex w-full justify-center rounded-md bg-re-500 dark:bg-red-500 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+
                   >
                     Submit
                   </button>
