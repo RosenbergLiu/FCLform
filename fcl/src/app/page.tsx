@@ -22,7 +22,15 @@ export default function BatchForm() {
         body: JSON.stringify(body),
       })
 
-      router.push('/')
+      setModelName('');
+      setSubmitDate('');
+      setQuantity('');
+      setLicenseLevel('');
+      setComment('');
+
+      router.push('/');
+
+      console.log("reached");
     } catch (error) {
       console.error(error)
     }
@@ -32,10 +40,10 @@ export default function BatchForm() {
       <>
         <div className="flex min-h-full flex-1 flex-col justify-center py-12 sm:px-6 lg:px-8">
           <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-[480px] ">
-            <div className="bg-white px-6 py-12 shadow sm:rounded-lg sm:px-12 dark:bg-black border-4 border-white dark:border-4 dark:border-red-500">
+            <div className="px-6 py-12 shadow sm:rounded-lg sm:px-12 bg-black border-4 border-red-500">
               <form className="space-y-6 " onSubmit={submitData}>
                 <div className="mt-2">
-                  <p className="text-2xl">Batch Form</p>
+                  <p className="text-2xl text-white">Batch Form</p>
                 </div>
                 <div className="mt-2" id="model-selector">
                   <select
