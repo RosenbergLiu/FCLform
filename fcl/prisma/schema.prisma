@@ -11,7 +11,7 @@ datasource db {
 }
 
 model Batch {
-    machine_number Int @id
+    machine_number String @id
     submit_date DateTime
     model Int
     quantity Int

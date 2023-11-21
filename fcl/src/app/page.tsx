@@ -1,15 +1,39 @@
 'use client'
-import Image from 'next/image'
-import * as ReactDOM from 'react-dom';
-import * as React from 'react';
+
+import { useRouter } from 'next/navigation'
+import React, { useState } from 'react'
 
 export default function BatchForm() {
+  const router = useRouter()
+
+  const [model_name, setModelName] = useState('')
+  const [submit_date, setSubmitDate] = useState('')
+  const [quantity, setQuantity] = useState('')
+  const [license_level, setLicenseLevel] = useState('')
+  const [comment, setComment] = useState('')
+
+  const submitData = async (e: React.SyntheticEvent) => {
+    e.preventDefault()
+    try {
+      const body = { model_name, submit_date, quantity, license_level, comment }
+      await fetch(`/api/batch`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(body),
+      })
+
+      router.push('/')
+    } catch (error) {
+      console.error(error)
+    }
+  }
+
   return (
       <>
         <div className="flex min-h-full flex-1 flex-col justify-center py-12 sm:px-6 lg:px-8">
           <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-[480px]">
             <div className="bg-white px-6 py-12 shadow sm:rounded-lg sm:px-12">
-              <form className="space-y-6" action="#" method="POST">
+              <form className="space-y-6" action="#" method="POST" onSubmit={submitData}>
                 <div className="mt-2">
                   <p className="text-2xl">Batch Form</p>
                 </div>
@@ -18,8 +42,10 @@ export default function BatchForm() {
                       id="model"
                       name="model"
                       className="mt-2 block w-full rounded-md border-0 py-1.5 pl-3 pr-10 text-gray-900 ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                      defaultValue=""
+
                       required
+                      value={model_name}
+                      onChange={(e) => setModelName(e.target.value)}
                   >
                     <option value="" disabled>Model</option>
                     <option>Model 1</option>
@@ -27,12 +53,14 @@ export default function BatchForm() {
                     <option>Model 3</option>
                   </select>
                 </div>
-                <div className="mt-2">
+                <div className="mt-2" id="date-selector">
                   <input
                       id="password"
                       name="password"
                       type="date"
                       required
+                      value={submit_date}
+                      onChange={(e) => setSubmitDate(e.target.value)}
                       className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                   />
                 </div>
@@ -43,6 +71,8 @@ export default function BatchForm() {
                       name="quantity"
                       type="number"
                       required
+                      value={quantity}
+                      onChange={(e) => setQuantity(e.target.value)}
                       className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                       placeholder="Quantity"
 
@@ -54,8 +84,10 @@ export default function BatchForm() {
                       id="level"
                       name="level"
                       className="mt-2 block w-full rounded-md border-0 py-1.5 pl-3 pr-10 text-gray-900 ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                      defaultValue=""
+
                       required
+                      value={license_level}
+                      onChange={(e) => setLicenseLevel(e.target.value)}
                   >
                     <option value="" disabled>License Level</option>
                     <option>0</option>
@@ -78,6 +110,8 @@ export default function BatchForm() {
                       type="text"
                       className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                       placeholder="Comment (Optional)"
+                      value={comment}
+                      onChange={(e) => setComment(e.target.value)}
                   />
                 </div>
 
