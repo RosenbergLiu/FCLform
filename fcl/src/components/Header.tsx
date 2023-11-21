@@ -1,18 +1,48 @@
 'use client'
 
-import { useState } from 'react'
+import React, { useState } from 'react'
 import { Dialog } from '@headlessui/react'
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
+import Link from 'next/link'
+import { usePathname } from 'next/navigation'
+import clsx from 'clsx'
 
 const navigation = [
-    { name: 'Admin', href: '#' },
-    { name: 'Invoices', href: '#' },
-    { name: 'Batch Form', href: '#' },
-    { name: 'View Batches', href: '#' },
+    { name: 'Admin', href: '/admin' },
+    { name: 'Invoices', href: '/invoices' },
+    { name: 'Batch Form', href: '/' },
+    { name: 'View Batches', href: '/batches' },
     { name: 'Logout', href: '#' }
 ]
 
-export default function Example() {
+function NavItem({
+                     href,
+                     children,
+                 }: {
+    href: string
+    children: React.ReactNode
+}) {
+    let isActive = usePathname() === href
+
+    return (
+        <Link
+            href={href}
+            className={clsx(
+                'relative block px-3 py-2 transition',
+                isActive
+                    ? 'text-teal-500 dark:text-teal-400'
+                    : 'hover:text-teal-500 dark:hover:text-teal-400',
+            )}
+        >
+            {children}
+            {isActive && (
+                <span className="absolute inset-x-1 -bottom-px h-px bg-gradient-to-r from-teal-500/0 via-teal-500/40 to-teal-500/0 dark:from-teal-400/0 dark:via-teal-400/40 dark:to-teal-400/0" />
+            )}
+        </Link>
+    )
+}
+
+export default function Header() {
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
     return (
@@ -34,9 +64,9 @@ export default function Example() {
                 </div>
                 <div className="hidden lg:flex lg:gap-x-12">
                     {navigation.map((item) => (
-                        <a key={item.name} href={item.href} className="text-sm font-semibold leading-6 text-gray-900">
+                        <NavItem key={item.name} href={item.href}>
                             {item.name}
-                        </a>
+                        </NavItem>
                     ))}
                 </div>
             </nav>
