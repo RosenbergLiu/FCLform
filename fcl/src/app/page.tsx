@@ -2,6 +2,7 @@
 
 import { useRouter } from 'next/navigation'
 import React, { useState } from 'react'
+import {processEnv} from "@next/env";
 
 export default function BatchForm() {
   const router = useRouter()
@@ -16,7 +17,7 @@ export default function BatchForm() {
     e.preventDefault()
     try {
       const body = { model_name, submit_date, quantity, license_level, comment }
-      await fetch(`/api/batch`, {
+      const result = await fetch(`/api/batch`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(body),
@@ -30,7 +31,7 @@ export default function BatchForm() {
 
       router.push('/');
 
-      console.log("reached");
+      console.log(result);
     } catch (error) {
       console.error(error)
     }
@@ -128,7 +129,6 @@ export default function BatchForm() {
                       type="submit"
                       style={{ backgroundColor: '#6A5739' }}
                       className="flex w-full justify-center rounded-md bg-re-500 dark:bg-red-500 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-
                   >
                     Submit
                   </button>

@@ -19,6 +19,7 @@ function formatDateToDDMMYYYY(submit_date: Date): string {
     const year = date.getFullYear().toString();
     return `${day}${month}${year}`;
 }
+
 export default async function handler(
     req: NextApiRequest,
     res: NextApiResponse,
